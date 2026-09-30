@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>เกมจับผิดภาพขั้นสุด - Budgie Spot the Difference</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1a202c">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div id="screen-home" class="screen active">
+        <div class="logo-container">
+            <div class="budgie-badge"><i class="fa-solid fa-feather-pointed"></i> Ultra HD Edition</div>
+            <h1 class="game-title">Budgie Spot<br><span>The Difference</span></h1>
+            <p class="subtitle">เกมจับผิดภาพสุดยากระดับโลก (เนียนเนตร)</p>
+        </div>
+
+        <div class="category-select">
+            <h3><i class="fa-solid fa-map-location-dot"></i> เลือกหมวดหมู่การเล่น (60 ด่าน)</h3>
+            <div class="cat-grid">
+                <button class="btn-cat active" data-cat="0">
+                    <i class="fa-solid fa-paw"></i>
+                    <span>สัตว์โลกน่ารัก</span>
+                    <small>20 ด่าน</small>
+                </button>
+                <button class="btn-cat" data-cat="1">
+                    <i class="fa-solid fa-building-columns"></i>
+                    <span>สถานที่ท่องเที่ยว</span>
+                    <small>20 ด่าน</small>
+                </button>
+                <button class="btn-cat" data-cat="2">
+                    <i class="fa-solid fa-utensils"></i>
+                    <span>ร้านอาหาร & เมนูอร่อย</span>
+                    <small>20 ด่าน</small>
+                </button>
+            </div>
+        </div>
+
+        <div class="main-menu-btns">
+            <button id="btn-play" class="btn-primary-large"><i class="fa-solid fa-play"></i> เริ่มเล่นเกม</button>
+            <button id="btn-how" class="btn-secondary"><i class="fa-solid fa-book-open"></i> วิธีเล่น & คำแนะนำ</button>
+        </div>
+    </div>
+
+    <div id="screen-map" class="screen">
+        <div class="header-bar">
+            <button class="btn-icon" id="map-back"><i class="fa-solid fa-arrow-left"></i></button>
+            <h2 id="map-title">เลือกด่าน</h2>
+            <div class="stat-badge"><i class="fa-solid fa-star text-warning"></i> <span id="total-stars">0</span>/180</div>
+        </div>
+        <div class="level-grid" id="level-grid"></div>
+    </div>
+
+    <div id="screen-game" class="screen">
+        <div class="game-header">
+            <button class="btn-icon" id="btn-pause"><i class="fa-solid fa-pause"></i></button>
+            <div class="hud-item"><i class="fa-solid fa-clock"></i> <span id="time-left">90</span>s</div>
+            <div class="hud-item"><i class="fa-solid fa-bullseye"></i> <span id="found-count">0</span>/3</div>
+            <div class="hud-item hearts-hud" id="hearts-container">
+                <i class="fa-solid fa-heart active"></i>
+                <i class="fa-solid fa-heart active"></i>
+                <i class="fa-solid fa-heart active"></i>
+            </div>
+            <button class="btn-hint" id="btn-hint"><i class="fa-solid fa-lightbulb"></i> <span id="hint-count">3</span></button>
+        </div>
+
+        <div class="zoom-controls">
+            <button id="btn-zoom-in"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+            <button id="btn-zoom-out"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+            <button id="btn-zoom-reset"><i class="fa-solid fa-rotate-left"></i></button>
+        </div>
+
+        <div class="game-workspace" id="workspace">
+            <div class="image-pair-wrapper" id="pair-wrapper">
+                <div class="canvas-box">
+                    <span class="img-tag">ภาพต้นฉบับ</span>
+                    <canvas id="canvas-left"></canvas>
+                </div>
+                <div class="canvas-box">
+                    <span class="img-tag">ภาพดัดแปลง</span>
+                    <canvas id="canvas-right"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-overlay" class="modal-overlay">
+        <div class="modal-card" id="modal-card">
+            <h2 id="modal-title">แจ้งเตือน</h2>
+            <div id="modal-body"></div>
+            <div class="modal-actions" id="modal-actions"></div>
+        </div>
+    </div>
+
+    <script src="js/game.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
+</body>
+</html>
